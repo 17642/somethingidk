@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<math.h>
 
 #define MAP_SIZE_X 100
 #define MAP_SIZE_Y 100
@@ -9,6 +10,8 @@
 #define PNTEST(n) ((n<0)?-1:(n>0)?1:0)
 #define XMOD(count) (((count<6)?1:-1)*(count-1%4))
 #define YMOD(count) ((count-3)%4)
+
+
 
 typedef enum stat{
     NONE=0,
@@ -32,7 +35,8 @@ int astar(point status,point end,stat* map){
     float weight[8]; // 0->NW, 
     int k=0;
     for(int i=0;i<8,i++){
-        weight[i]=(i%2==0)?MOVE_DG+huristic():MOVE_VH+huristic();
+        weight[i]=(i%2==0)?MOVE_DG:MOVE_VH;
+        weight[i]+=huristic_test({status.x+PNTEST(XMOD(count)),status.y+PNTEST(YMOD(count)},end)
         weight[i]*=avtest(map,i,status);
     }
     for(i=1;i<8,i++){
@@ -64,6 +68,10 @@ int avtest(stat map[MAP_SIZE_X-1][MAP_SIZE_Y],int count,point status){
 
 int huristic(){
     return 0;
+}
+
+float huristic_test(point status,point end){
+    return sqrt(pow(status.x-end.x,2)+pow(status.y-end.y,2));
 }
 
 /*
