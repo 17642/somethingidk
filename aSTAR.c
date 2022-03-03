@@ -28,6 +28,8 @@ typedef struct point{
 int main(void){
     map=stat[MAP_SIZE_X-1][MAP_SIZE_Y-1];
     map={0,};
+    point startpnt=(0,0);
+    point endpnt=(0,0);
 
 }
 
@@ -84,4 +86,7 @@ count       count-3%4   ((count<6)?1:-1)*(count-1%4)    xmod    ymod
 5 -> -0-1   2           0                               0       1
 6 -> -1-1   3           -1                              -1      1
 7 -> -1-0   0           -2                              -1      0
+0   1   2
+3   C   4
+5   6   7
 */
